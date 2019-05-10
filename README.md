@@ -1,3 +1,23 @@
+
+9.2. COMPONENT LIFECYCLE
+
+ngOnChanges()— Called when a parent component modifies (or initializes) the values bound to the input properties of a child. If the component has no input properties, ngOnChanges() isn’t invoked.
+
+ illustrates the different effects of bindings on primitive values versus object values.
+
+ The first property is a string, and the second is an Object with one property: name. 
+
+ To understand why the ngOnChanges() callback may or may not be invoked, you need to become familiar with the concept of mutable versus immutable values.
+
+ Initially, ngOnChanges() was invoked for both properties. Note the "firstChange": true—this was the very first change in bindings. After we deleted the letter o in the greeting Hello, ngOnChanges() was invoked again, and the firstChange flag became false. But changing the username from John to John Smith didn’t invoke ngOnChanges(), because the binding of the mutable object myUser didn’t change.
+
+
+ But the change detection mechanism still catches the change. That’s why "John Smith", the new value of the property user.name, has been rendered in the child component.
+
+ You probably appreciate the change detector for properly updating the UI
+
+
+
 # PawnAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
